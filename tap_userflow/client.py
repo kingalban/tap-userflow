@@ -59,14 +59,16 @@ class StartingAfterPaginator(JSONPathPaginator):
 class UserFlowStream(RESTStream):
     """UserFlow stream class."""
 
-    sorting_key = "created_at"
-    primary_keys = ("id",)
-    replication_key = "id"
-
+    is_sorted = True
+    check_sorted = False  # streams are sorted by date, but not by replication_key.
     records_jsonpath = "$.data[*]"
     next_page_token_jsonpath = "$.next_page_url"  # noqa: S105
 
     url_base = "https://api.userflow.com"
+
+    sorting_key = "created_at"
+    primary_keys = ("id",)
+    replication_key = "id"
 
     @property
     def schema_filepath(self) -> Path | None:
