@@ -26,7 +26,7 @@ class ContentsStream(UserFlowStream):
     """
 
     name = "content"
-    path = "/content?expand=draft_version"
+    path = "/content?expand=draft_version&expand=published_version"
 
     def get_child_context(self, record: dict, context: dict | None) -> dict | None:  # noqa: ARG002
         """This will be called for every record and a new child stream started with this context."""  # noqa: E501

@@ -7,6 +7,22 @@
     "created_at": {
       "type": "string",
       "format": "date-time"
+    },
+    "object": {
+      "type": "string",
+      "enum": ["user"]
+    },
+    "attributes": {
+      "type": ["null", "object"],
+      "properties": {}
+    },
+    "memberships": {
+      "type": ["null", "array"],
+      "items": {}
+    },
+    "groups": {
+      "type": ["null", "array"],
+      "items": {}
     }
   },
   "required": ["id", "created_at"]

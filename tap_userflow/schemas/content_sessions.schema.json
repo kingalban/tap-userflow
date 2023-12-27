@@ -7,7 +7,71 @@
     "created_at": {
       "type": "string",
       "format": "date-time"
+    },
+    "object": {
+      "type": "string",
+      "enum": ["content_session"]
+    },
+    "answers": {
+      "type": ["null", "array"],
+      "items": {
+        "id": {"type": "string"},
+        "object": {"type": "string","enum": ["content_session_answer"]},
+        "answer_type": {"type": "string", "enum":  ["number", "text", "list"]},
+        "answer_value": {"type": "string"},
+        "created_at": {"type": "string", "format": "date-time"},
+        "question_cvid": {"type": "string"},
+        "question_name": {"type": "string"}
+      }
+    },
+    "completed_at": {
+      "type": ["null","string"],
+      "format": "date-time"
+    },
+    "completed": {
+      "type": "boolean"
+    },
+    "content_id": {
+      "type": "string"
+    },
+    "content": {
+      "type": ["null", "object"],
+      "properties": {}
+    },
+    "group_id": {
+      "type": ["null","string"]
+    },
+    "group": {
+      "type": ["null", "object"],
+      "properties": {}
+    },
+    "is_preview": {
+      "type": "boolean"
+    },
+    "last_activity_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "launcher_activated": {
+      "type": "boolean"
+    },
+    "progress": {
+      "type": ["null","string"]
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "user": {
+      "type": ["null", "object"],
+      "properties": {}
+    },
+    "version_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": ["null", "object"],
+      "properties": {}
     }
   },
-  "required": ["id", "created_at"]
+  "required": ["id", "last_activity_at"]
 }

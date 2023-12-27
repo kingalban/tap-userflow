@@ -7,6 +7,19 @@
     "created_at": {
       "type": "string",
       "format": "date-time"
+    },
+    "object": {
+      "type": "string",
+      "enum": ["event_definition"]
+    },
+    "description": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
     }
   },
   "required": ["id", "created_at"]

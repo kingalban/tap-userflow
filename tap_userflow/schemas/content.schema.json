@@ -7,6 +7,30 @@
     "created_at": {
       "type": "string",
       "format": "date-time"
+    },
+    "object": {
+      "type": "string",
+      "enum": ["content"]
+    },
+    "draft_version_id":{
+      "type": "string"
+    },
+    "draft_version": {
+      "type": ["null", "object"],
+      "properties": {}
+    },
+    "name":{
+      "type": "string"
+    },
+    "published_version_id": {
+      "type": ["null", "string"]
+    },
+    "published_version":{
+      "type": ["null", "object"],
+      "properties": {}
+    },
+    "type": {
+      "type": "string"
     }
   },
   "required": ["id", "created_at"]

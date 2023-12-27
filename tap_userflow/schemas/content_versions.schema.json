@@ -7,6 +7,28 @@
     "created_at": {
       "type": "string",
       "format": "date-time"
+    },
+    "object": {
+      "type": "string",
+      "enum": ["content_version"]
+    },
+    "description": {
+      "type": "string"
+    },
+    "edited_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "number": {
+      "type": "integer"
+    },
+    "questions": {
+      "type": ["null", "array"],
+      "items": {}
+    },
+    "tasks": {
+      "type": ["null", "array"],
+      "items": {}
     }
   },
   "required": ["id", "created_at"]

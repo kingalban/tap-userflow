@@ -2,11 +2,51 @@
   "type": "object",
   "properties": {
     "id": {
-      "type": "string"
+      "type": "string",
+      "format": ""
+    },
+    "object": {
+      "type": "string",
+      "enum": ["attribute_definition"]
     },
     "created_at": {
       "type": "string",
       "format": "date-time"
+    },
+    "data_type": {
+      "type": "string",
+      "enum": [
+        "checklist_task",
+        "content",
+        "content_session",
+        "content_version",
+        "flow_step",
+        "random_ab",
+        "random_number",
+        "string",
+        "number",
+        "boolean",
+        "datetime",
+        "list"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "event",
+        "group",
+        "group_membership",
+        "user"
+      ]
     }
   },
   "required": ["id", "created_at"]
