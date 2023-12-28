@@ -86,7 +86,7 @@ Create tests within the `tests` subfolder and
   then run:
 
 ```bash
-poetry run pytest
+TAP_USERFLOW_AUTH_TOKEN='<your-token-here>' poetry run pytest
 ```
 
 You can also test the `tap-userflow` CLI interface directly using `poetry run`:
