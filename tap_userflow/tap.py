@@ -6,12 +6,14 @@ from singer_sdk import Tap
 from singer_sdk import typing as th  # JSON schema typing helpers
 
 from tap_userflow import streams
+import importlib.metadata
 
 
 class TapUserFlow(Tap):
     """UserFlow tap class."""
 
     name = "tap-userflow"
+    plugin_version = importlib.metadata.version("kingalban-tap-userflow")
 
     config_jsonschema = th.PropertiesList(
         th.Property(

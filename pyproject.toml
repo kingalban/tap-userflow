@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kingalban-tap-userflow"
-version = "v0.1.1"
+version = "v0.1.2"
 description = "`tap-userflow` is a Singer tap for UserFlow, built with the Meltano Singer SDK."
 readme = "README.md"
 authors = ["Alban King <kingalban@gmail.com>"]
