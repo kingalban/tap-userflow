@@ -4,16 +4,14 @@
 
 Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
 
-<!--
 
-Developer TODO: Update the below as needed to correctly describe the install procedure. For instance, if you do not have a PyPi repo, or if you want users to directly install from your git repo, you can modify this step as appropriate.
 
 ## Installation
 
 Install from PyPi:
 
 ```bash
-pipx install tap-userflow
+pip install kingalban-tap-userflow
 ```
 
 Install from GitHub:
@@ -22,21 +20,9 @@ Install from GitHub:
 pipx install git+https://github.com/kingalban/tap-userflow.git@main
 ```
 
--->
-
 ## Configuration
 
 ### Accepted Config Options
-
-<!--
-Developer TODO: Provide a list of config options accepted by the tap.
-
-This section can be created by copy-pasting the CLI output from:
-
-```
-tap-userflow --about --format=markdown
-```
--->
 
 A full list of supported settings and capabilities for this
 tap is available by running:
@@ -44,6 +30,15 @@ tap is available by running:
 ```bash
 tap-userflow --about
 ```
+
+### Example Config File
+
+```json
+{
+  "auth_token": "<userflow-api-key>"
+}
+```
+
 
 ### Configure using environment variables
 
@@ -53,9 +48,7 @@ environment variable is set either in the terminal context or in the `.env` file
 
 ### Source Authentication and Authorization
 
-<!--
-Developer TODO: If your tap requires special access on the source system, or any special authentication requirements, provide those here.
--->
+Userflow uses Bearer authentication. Follow their documentation [here](https://userflow.com/docs/api#authentication) to generate API keys.
 
 ## Usage
 

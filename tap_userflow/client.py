@@ -8,6 +8,7 @@ from urllib.parse import parse_qs
 
 import requests
 from singer_sdk.authenticators import BearerTokenAuthenticator
+from singer_sdk.helpers._typing import TypeConformanceLevel
 from singer_sdk.pagination import JSONPathPaginator
 from singer_sdk.streams import RESTStream
 
@@ -69,6 +70,9 @@ class UserFlowStream(RESTStream):
     sorting_key = "created_at"
     primary_keys = ("id",)
     replication_key = "id"
+
+    # the 'attributes' property contains arbitrary keys
+    TYPE_CONFORMANCE_LEVEL = TypeConformanceLevel.ROOT_ONLY
 
     @property
     def schema_filepath(self) -> Path | None:
