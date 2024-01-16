@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import contextlib
 from pathlib import Path
 from typing import Any, Callable
 from urllib.parse import parse_qs
@@ -168,14 +169,13 @@ class UserFlowStream(RESTStream):
 
     def response_error_message(self, response: requests.Response) -> str:
         """Build an error message from the response, including detailed message."""
-        try:
-            detailed_message = (
-                f"(code: {response.json()['error']['code']}, "
-                f"message: {response.json()['error']['message']})"
-            )
+        detailed_message = ""
 
-        except (requests.exceptions.JSONDecodeError, KeyError):
-            detailed_message = ""
+        for key in ("code", "message"):
+            with contextlib.suppress(requests.exceptions.JSONDecodeError, KeyError):
+                detailed_message += f"{key}={response.json()['error'][key]!r}, "
+
+        detailed_message += f"url: {response.url!r}"
 
         super_message = super().response_error_message(response)
-        return f"{super_message} {detailed_message}"
+        return f"{super_message} ({detailed_message})"

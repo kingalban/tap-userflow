@@ -52,11 +52,24 @@ class ContentSessionsStream(UserFlowStream):
     A session is a specific user's journey through a specific
     content object (flow, checklist or launcher).
     It tracks their progress and records survey answers they provide.
+
+    Although it doesn't have to be, this stream is a child stream of ContentsStream.
+    If your account has very many content_sessions,
+    then the server may time out ang give HTTP 500. This was recommended by Userflow staff.
     """
+
+    parent_stream_type = ContentsStream
+    ignore_parent_replication_keys = True
 
     name = "content_sessions"
     sorting_key = "last_activity_at"
-    path = "/content_sessions?expand[]=answers&expand[]=content&expand[]=group&expand[]=version"  # noqa: E501
+    path = (
+        "/content_sessions?content_id={content_id}"
+        "&expand[]=answers"
+        "&expand[]=content"
+        "&expand[]=group"
+        "&expand[]=version"
+    )
 
 
 class AttributeDefinitionsStream(UserFlowStream):
