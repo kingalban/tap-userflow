@@ -9,14 +9,16 @@ class UsersStream(UserFlowStream):
     """User stream."""
 
     name = "users"
-    path = "/users?expand=memberships"
+    path = "/users"
+    expand = "memberships"
 
 
 class GroupsStream(UserFlowStream):
     """Group stream."""
 
     name = "groups"
-    path = "/groups?expand=memberships"
+    path = "/groups"
+    expand = "memberships"
 
 
 class ContentsStream(UserFlowStream):
@@ -26,7 +28,8 @@ class ContentsStream(UserFlowStream):
     """
 
     name = "content"
-    path = "/content?expand=draft_version&expand=published_version"
+    path = "/content"
+    expand = ("draft_version", "published_version")
 
     def get_child_context(self, record: dict, context: dict | None) -> dict | None:  # noqa: ARG002
         """This will be called for every record and a new child stream started with this context."""  # noqa: E501
@@ -43,7 +46,8 @@ class ContentVersionsStream(UserFlowStream):
     ignore_parent_replication_keys = True
     sorting_key = "number"
     name = "content_versions"
-    path = "/content_versions?content_id={content_id}&expand=tasks&expand=questions"
+    path = "/content_versions?content_id={content_id}"
+    expand = ("tasks", "questions")
 
 
 class ContentSessionsStream(UserFlowStream):
@@ -62,14 +66,9 @@ class ContentSessionsStream(UserFlowStream):
     ignore_parent_replication_keys = True
 
     name = "content_sessions"
-    sorting_key = "last_activity_at"
-    path = (
-        "/content_sessions?content_id={content_id}"
-        "&expand[]=answers"
-        "&expand[]=content"
-        "&expand[]=group"
-        "&expand[]=version"
-    )
+    sorting_key = ("last_activity_at", "created_at")
+    path = "/content_sessions?content_id={content_id}"
+    expand = ("answers", "content", "group", "version")
 
 
 class AttributeDefinitionsStream(UserFlowStream):

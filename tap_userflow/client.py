@@ -71,6 +71,7 @@ class UserFlowStream(RESTStream):
     sorting_key = "created_at"
     primary_keys = ("id",)
     replication_key = "id"
+    expand = None
 
     # the 'attributes' property contains arbitrary keys
     TYPE_CONFORMANCE_LEVEL = TypeConformanceLevel.ROOT_ONLY
@@ -157,13 +158,18 @@ class UserFlowStream(RESTStream):
             params["starting_after"] = self.get_starting_replication_key_value(context)
 
         if self.sorting_key:
+            key = "order_by[]" if isinstance(self.sorting_key, (tuple, list)) else "order_by"
             params["sort"] = "asc"
-            params["order_by"] = self.sorting_key
+            params[key] = self.sorting_key
 
         params["limit"] = MAX_PAGE_SIZE
 
         if self.config.get("limit") and self.config.get("limit") <= MAX_PAGE_SIZE:
             params["limit"] = self.config.get("limit")
+
+        if self.expand:
+            key = "expand[]" if isinstance(self.expand, (list, tuple)) else "expand"
+            params[key] = self.expand
 
         return params
 
