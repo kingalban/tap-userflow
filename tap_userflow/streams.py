@@ -10,7 +10,7 @@ class UsersStream(UserFlowStream):
 
     name = "users"
     path = "/users"
-    expand = "memberships"
+    expand = ("memberships",)
 
 
 class GroupsStream(UserFlowStream):
@@ -18,7 +18,7 @@ class GroupsStream(UserFlowStream):
 
     name = "groups"
     path = "/groups"
-    expand = "memberships"
+    expand = ("memberships",)
 
 
 class ContentsStream(UserFlowStream):
@@ -43,8 +43,8 @@ class ContentVersionsStream(UserFlowStream):
     """
 
     parent_stream_type = ContentsStream
-    ignore_parent_replication_keys = True
-    sorting_key = "number"
+    ignore_parent_replication_key = True
+    sorting_keys = ("number",)
     name = "content_versions"
     path = "/content_versions?content_id={content_id}"
     expand = ("tasks", "questions")
@@ -59,11 +59,12 @@ class ContentSessionsStream(UserFlowStream):
 
     Although it doesn't have to be, this stream is a child stream of ContentsStream.
     If your account has very many content_sessions,
-    then the server may time out ang give HTTP 500. This was recommended by Userflow staff.
+    then the server may time out ang give HTTP 500.
+    This was recommended by Userflow staff.
     """
 
     parent_stream_type = ContentsStream
-    ignore_parent_replication_keys = True
+    ignore_parent_replication_key = True
 
     name = "content_sessions"
     sorting_key = ("last_activity_at", "created_at")
