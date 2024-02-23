@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from singer_sdk.streams.core import REPLICATION_FULL_TABLE
+
 from tap_userflow.client import UserFlowStream
 
 
@@ -77,6 +79,7 @@ class AttributeDefinitionsStream(UserFlowStream):
 
     name = "attribute_definitions"
     path = "/attribute_definitions"
+    forced_replication_method = REPLICATION_FULL_TABLE
 
 
 class EventDefinitionsStream(UserFlowStream):
@@ -84,6 +87,7 @@ class EventDefinitionsStream(UserFlowStream):
 
     name = "event_definitions"
     path = "/event_definitions"
+    forced_replication_method = REPLICATION_FULL_TABLE
 
 
 STREAMS = [
